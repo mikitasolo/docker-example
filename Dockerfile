@@ -1,7 +1,9 @@
 FROM node:12
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-COPY . .
+
 EXPOSE 3002
-CMD ["node", "index.js"]
+COPY ["./package.json", "./package-lock.json", "/nikita/app/"]
+WORKDIR /nikita/app
+RUN npm ci --quiet
+COPY ./src /nikita/app/src
+
+CMD npm start

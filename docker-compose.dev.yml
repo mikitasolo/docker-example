@@ -2,9 +2,11 @@ version: '3.6'
 
 services:
   api:
-    image: sobakaslava/docker-example-api
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     volumes:
-      - ./src:/nikita/app/src
+      - ./src:/app/src
     ports:
       - "3002:3002"
     networks:
